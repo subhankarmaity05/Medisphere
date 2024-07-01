@@ -253,6 +253,14 @@ Description:
     .heading__2 h6 {
         text-align: center;
     }
+
+    .owl-nav .owl-prev span {
+        font-size: 50px;
+    }
+
+    .owl-nav .owl-next span {
+        font-size: 50px;
+    }
     
     .btn__group a {
         padding: 12px 25px !important;
