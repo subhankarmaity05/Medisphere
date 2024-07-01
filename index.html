@@ -1,77 +1,3 @@
-<?php
-$errors = array();
-$success = false;
-$hospital_name = $full_name = $mobile = $address = $beds = $appointment = '';
-?>
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form-submit'])) {
-    ?>
-    <script>
-        window.onload = function () {
-            document.getElementById('contact').scrollIntoView();
-        };
-    </script>
-    <?php
-    $conn = new mysqli('localhost', 'root', '', 'medisphere');
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    $hospital_name = trim($_POST["hospital_name"]);
-    $full_name = trim($_POST["full_name"]);
-    $mobile = trim($_POST["mobile"]);
-    $address = trim($_POST["address"]);
-    $beds = trim($_POST["beds"]);
-    $appointment = trim($_POST["appointment"]);
-
-    if (empty($hospital_name)) {
-        $errors["hospital_name"] = "Hospital Name is required.";
-    }
-
-    if (empty($full_name)) {
-        $errors["full_name"] = "Full Name is required.";
-    }
-
-    if (empty($mobile)) {
-        $errors["mobile"] = "Mobile Number is required.";
-    }
-
-    if (empty($address)) {
-        $errors["address"] = "Address is required.";
-    }
-
-    if (empty($beds)) {
-        $errors["beds"] = "Number of Beds is required.";
-    } elseif (!is_numeric($beds)) {
-        $errors["beds"] = "Number of Beds must be a number.";
-    }
-
-    if (empty($appointment)) {
-        $errors["appointment"] = "Preferred Date and Time for appointment is required.";
-    }
-
-    if (empty($errors)) {
-        $stmt = $conn->prepare("INSERT INTO schedules (hospital_name, full_name, mobile, address, beds, appointment) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssis", $hospital_name, $full_name, $mobile, $address, $beds, $appointment);
-
-        if ($stmt->execute()) {
-            //echo "Your message has been sent successfully.";
-            $success = true;
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-
-        $stmt->close();
-    } else {
-        foreach ($errors as $field => $error) {
-            //echo "<p style='color: red;'>$error</p>";
-        }
-    }
-
-    // Close the database connection
-    $conn->close();
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en"><!--HTML START-->
 
@@ -224,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form-submit'])) {
                 </div>
                 <div class="col-lg-6 align-self-center">
                     <div class="heading heading__2 no__margin wow fadeInDown">
-                        <h3>Secure, Reliable, and Fast Cloud-based Hospital
+                        <h3 id="simpleUsage">Secure, Reliable, and Fast Cloud-based Hospital
                             Information System</h3>
                         <h6>Medisphere, a flagship product of UA Innovations
                             Private Limited, is a cutting-edge cloud-based
@@ -1185,13 +1111,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form-submit'])) {
                     </div> -->
                 <div class="col-lg-12 align-self-center">
                     <div class="tocken__form__area theme__bg__6 ">
-                        <?php if ($success) {
-                            $hospital_name = $full_name = $mobile = $address = $beds = $appointment = '';
-                            ?>
-                            <div class="alert alert-success" role="alert">
+                       
+                            <!-- <div class="alert alert-success" role="alert">
                                 <b>Successfully Submitted</b>
-                            </div>
-                        <?php } ?>
+                            </div> -->
+                        
                         <div class="tocken__form__heading">
                             <h2>Request Demo</h2>
                             <p>Please fill out the form below to schedule a
@@ -1202,45 +1126,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form-submit'])) {
                                 <div class="row">
                                     <div class="form-group col-lg-6">
                                         <label for="hospital_name">Hospital Name</label>
-                                        <input type="text" name="hospital_name" placeholder="Enter Hospital Name"
-                                            value="<?= htmlspecialchars($hospital_name) ?>"
-                                            class="<?= isset($errors['hospital_name']) ? 'is-invalid' : '' ?>">
-                                        <div class="invalid-feedback"><?= $errors['hospital_name'] ?? '' ?></div>
+                                        <input type="text" name="hospital_name" placeholder="Enter Hospital Name">
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="full_name">Enter Your Name</label>
-                                        <input type="text" name="full_name" placeholder="Full Name"
-                                            value="<?= htmlspecialchars($full_name) ?>"
-                                            class="<?= isset($errors['full_name']) ? 'is-invalid' : '' ?>">
-                                        <div class="invalid-feedback"><?= $errors['full_name'] ?? '' ?></div>
+                                        <input type="text" name="full_name" placeholder="Full Name">
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="mobile">Enter Your Mobile Number</label>
-                                        <input type="tel" name="mobile" placeholder="Mobile Number"
-                                            value="<?= htmlspecialchars($mobile) ?>"
-                                            class="<?= isset($errors['mobile']) ? 'is-invalid' : '' ?>">
-                                        <div class="invalid-feedback"><?= $errors['mobile'] ?? '' ?></div>
+                                        <input type="tel" name="mobile" placeholder="Mobile Number">
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="address">Enter Your Address</label>
-                                        <input type="text" name="address" placeholder="Address"
-                                            value="<?= htmlspecialchars($address) ?>"
-                                            class="<?= isset($errors['address']) ? 'is-invalid' : '' ?>">
-                                        <div class="invalid-feedback"><?= $errors['address'] ?? '' ?></div>
+                                        <input type="text" name="address" placeholder="Address">
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="beds">Enter The No. of Beds</label>
-                                        <input type="number" name="beds" placeholder="No. of Beds"
-                                            value="<?= htmlspecialchars($beds) ?>"
-                                            class="<?= isset($errors['beds']) ? 'is-invalid' : '' ?>">
-                                        <div class="invalid-feedback"><?= $errors['beds'] ?? '' ?></div>
+                                        <input type="number" name="beds" placeholder="No. of Beds">
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="appointment">Preferred Date time for appointment:</label>
-                                        <input type="datetime-local" name="appointment" id="birthdaytime"
-                                            value="<?= htmlspecialchars($appointment) ?>"
-                                            class="<?= isset($errors['appointment']) ? 'is-invalid' : '' ?>">
-                                        <div class="invalid-feedback"><?= $errors['appointment'] ?? '' ?></div>
+                                        <input type="datetime-local" name="appointment" id="birthdaytime">
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-6 ml-auto p-0">
@@ -1257,50 +1163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['form-submit'])) {
     </div>
     <!--::::: CONTACT AREA END :::::::-->
 
-    <!--::::: LOGO AREA START :::::::-->
-    <!-- <div class="logo__area__2 padding-bottom fixed_mobile">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="logo_carousel owl-carousel">
-                            <div class="single___logo__table wow fadeInDown">
-                                <div class="single__logo__table__cell">
-                                    <img src="assets/img/logo/4.png" alt>
-                                </div>
-                            </div>
-                            <div class="single___logo__table wow fadeInDown">
-                                <div class="single__logo__table__cell">
-                                    <img src="assets/img/logo/1.png" alt>
-                                </div>
-                            </div>
-                            <div class="single___logo__table wow fadeInDown">
-                                <div class="single__logo__table__cell">
-                                    <img src="assets/img/logo/2.png" alt>
-                                </div>
-                            </div>
-                            <div class="single___logo__table wow fadeInDown">
-                                <div class="single__logo__table__cell">
-                                    <img src="assets/img/logo/3.png" alt>
-                                </div>
-                            </div>
-                            <div class="single___logo__table wow fadeInDown">
-                                <div class="single__logo__table__cell">
-                                    <img src="assets/img/logo/5.png" alt>
-                                </div>
-                            </div>
-                            <div class="single___logo__table wow fadeInDown">
-                                <div class="single__logo__table__cell">
-                                    <img src="assets/img/logo/4.png" alt>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-    <!--::::: LOGO AREA END :::::::-->
-
-    <!--::::: CALL TO ACTION AREA START :::::::-->
+     <!--::::: CALL TO ACTION AREA START :::::::-->
     <div class="container fixed_mobile">
         <div class="cta__area__2 bg padding50-50">
             <div class="col-lg-10 m-auto">

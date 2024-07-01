@@ -41,13 +41,24 @@
     text-align: center;
 }
 
-/*.owl-nav {*/
-/*    position: relative;*/
-/*    top: -360px;*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*}*/
+.owl-nav {
+    position: relative;
+    top: -360px;
+    display: flex;
+    justify-content: space-between;
+}
 
+.owl-nav .owl-prev span {
+    font-size: 80px;
+    color: #172541;
+    padding-left: 10px;
+}
+
+.owl-nav .owl-next span {
+    font-size: 80px;
+    color: #172541;
+    padding-right: 10px;
+}
 
 
 

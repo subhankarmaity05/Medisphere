@@ -44,11 +44,13 @@ jQuery(document).ready(function($) {
   welcome__carousel2.owlCarousel({
     loop:true,
     nav:true,
+    navText : ["<span><</span>","<span>></span>"],
+    navClass:['owl-prev','owl-next'],
     items:1,
-    dots:true,
+    dots:false,
     animateIn:'fadeIn',
     animateOut:'fadeOut',
-    // autoplay:true,
+    autoplay:true,
   })
 
   //==welcome_area animation==\\
@@ -241,3 +243,12 @@ jQuery(document).ready(function($) {
 
 }(jQuery));
 
+
+
+// Typing effect about section--------------------------
+
+new TypeIt("#simpleUsage", {
+    strings: "Secure, Reliable, and Fast Cloud-based Hospital Information System",
+    speed: 50,
+    waitUntilVisible: true,
+}).go();
