@@ -61,6 +61,12 @@
 }
 
 
+#typewriter-text {
+    overflow: hidden; /* Hide overflow to create the typewriter effect */
+    border-right: 1px solid black; /* Simulate the cursor */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
 
 
 
