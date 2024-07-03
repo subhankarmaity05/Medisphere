@@ -50,7 +50,7 @@ jQuery(document).ready(function($) {
     dots:false,
     animateIn:'fadeIn',
     animateOut:'fadeOut',
-    autoplay:true,
+    // autoplay:true,
   })
 
   //==welcome_area animation==\\

@@ -204,7 +204,7 @@ Description:
        background-position: -300px 275px !important;
         background-size: 175% 65% !important;
         /*top: -135px;*/
-        padding-bottom: 60%;
+        padding-bottom: 20%;
 
     }
 
@@ -216,7 +216,7 @@ Description:
         background-position: -290px 275px !important;
         background-size: 175% 65% !important;
         /*top: -135px;*/
-        padding-bottom: 60%;
+        padding-bottom: 20%;
     }
     
     .welcome__title2 h6 {
@@ -741,9 +741,74 @@ Description:
 	.container{
 		width: 480px;
 	}
+
+    .welcome__area.welcome__area__2 {
+        padding-bottom: 30%;
+
+    }
+
+    .welcome__area.welcome__area__3 {
+        padding-bottom: 30%;
+    }
+    /*
+
     /* -------------------- */
    
 }
+
+@media only screen and (max-width: 340px) and (max-width: 767px) {
+	/* .container{
+		width: 320px;
+	} */
+
+    .welcome__area.welcome__area__2 {
+        padding-bottom: 60%;
+
+    }
+
+    .welcome__area.welcome__area__3 {
+        padding-bottom: 60%;
+    }
+    /*
+    /* -------------------- */
+   
+}
+
+/* @media only screen and (min-width: 320px) and (max-width: 767px) {
+	.container{
+		width: 320px;
+	}
+
+    .welcome__area.welcome__area__2 {
+        padding-bottom: 60%;
+
+    }
+
+    .welcome__area.welcome__area__3 {
+        padding-bottom: 60%;
+    }
+    /*
+    /* -------------------- */
+   
+} */
+
+/* @media only screen and (min-width: 320px) {
+	.container{
+		width: 320px;
+	}
+
+    .welcome__area.welcome__area__2 {
+        padding-bottom: 40%;
+
+    }
+
+    .welcome__area.welcome__area__3 {
+        padding-bottom: 40%;
+    }
+    /* -------------------- */
+   
+} */
+/* @media only screen and (min-width: 480px) and (max-width: 767px) { */
 /*=========================================================================
                                 The end
 ==========================================================================*/
